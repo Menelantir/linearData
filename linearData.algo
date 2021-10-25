@@ -23,5 +23,5 @@ BEGIN
         END_FOR
         i++;
     Write ("Sum of overlapping elements = " sum)
-    Write ("Common elements are = " )
+    Write ("Common elements are = " thirdTable[i])
 END
