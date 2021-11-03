@@ -1,0 +1,127 @@
+ALGORITHM firstProblem
+VAR
+    array1 : ARRAY_OF INTEGER[];
+    array2 : ARRAY_OF INTEGER[];
+    sum := 0;
+    i : INTEGER ;
+
+BEGIN
+    FOR i FROM 0 TO array1.length STEP 1  DO
+        IF (array1[i] NOT IN array2) THEN
+            sum := sum + array1[i]
+        END_IF
+        FOR i FROM 0 TO array2.length STEP 1  DO
+            IF (array2[i] NOT IN array1) THEN
+            sum := sum + array2[i]
+            END_IF
+        END_FOR
+    END_FOR
+    Write (sum)
+END
+
+ALGORITHM firstHtable
+VAR
+    hTab : HASH_TABLE<INTEGER,INTEGER>;
+    array1 : ARRAY_OF INTEGER[];
+    array2 : ARRAY_OF INTEGER[];
+    key : INTEGER;
+    count : INTEGER;
+BEGIN
+    FOR i FROM 0 TO array1.length STEP 1  DO
+        key := array1[i]
+        IF (hTab.lookup(key)) THEN
+            count := hTab.get(key)+1;
+            hTab.insert(key,count);
+        ELSE
+            hTab.insert(key,1);
+        END_IF
+    END_FOR
+
+    FOR i FROM 0 TO array2.length STEP 1  DO
+        key := array2[i]
+        IF (hTab.lookup(key)) THEN
+            count := hTab.get(key)+1;
+            hTab.insert(key,count);
+        ELSE
+            hTab.insert(key,1);
+        END_IF
+    END_FOR
+
+    FOR i FROM 0 TO array1.length STEP 1  DO
+        IF (hTab.get(array1[i])=1) THEN
+        sum := sum + array1[i]
+        BREAK;
+        END_IF
+    END_FOR
+
+    FOR i FROM 0 TO array2.length STEP 1  DO
+        IF (hTab.get(array2[i])=1) THEN
+        sum := sum + array2[i]
+        BREAK;
+        END_IF
+    END_FOR
+    Write (sum);
+END
+
+
+
+ALGORITHM secondProblem
+VAR
+    array1 : ARRAY_OF INTEGER [];
+    array2 : ARRAY_OF INTEGER [];
+    sum := 0;
+    i : INTEGER;
+BEGIN
+FOR i FROM 0 TO array1.length STEP 1  DO 
+    IF (array1[i]  IN array2 ) THEN
+    sum := sum + array1[i]
+    END_IF
+    END_FOR
+    Write (sum)
+END
+
+
+ALGORITHM secondHtable
+VAR
+    hTab : HASH_TABLE<INTEGER,INTEGER>;
+    array1 : ARRAY_OF INTEGER[];
+    array2 : ARRAY_OF INTEGER[];
+    key : INTEGER;
+    count : INTEGER;
+BEGIN
+FOR i FROM 0 TO array1.length STEP 1 DO
+    key := array1[i]
+    IF (hTab.lookup(key)) THEN
+        count := hTab.get(key)+1;
+        hTab.insert(key,count);
+    ELSE
+        hTab.insert(key,1);
+    END_IF
+END_FOR
+
+    FOR i FROM 0 TO array2.length STEP 1 DO
+    key := array2[i]
+    IF (hTab.lookup(key)) THEN
+        count := hTab.get(key)+1;
+        hTab.insert(key,count);
+    ELSE
+        hTab.insert(key,1);
+    END_IF
+END_FOR      
+    
+FOR i FROM 0 TO array1.length STEP 1  DO
+    IF (hTab.get(array1[i]) > 1) THEN
+        sum := sum + array1[i];
+        BREAK;
+    END_IF
+END_FOR
+
+    FOR i FROM 0 TO array2.length STEP 1  DO
+    IF (hTab.get(array2[i]) > 1) THEN
+        sum := sum + array2[i];
+        BREAK;
+    END_IF
+END_FOR
+
+        Write (sum)
+END
